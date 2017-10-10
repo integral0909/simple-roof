@@ -2,7 +2,7 @@
   .container
     h1 Getting a roofing estimate is free
 
-    .input-group.input-group-lg
-      input.form-control aria-label=('Enter Your Address Here') placeholder=('Enter Your Address Here') type='text' /
+    form#roofs-form.input-group.input-group-lg
+      input#roofs-autocomplete.form-control aria-label=('Enter Your Address Here') placeholder=('Enter Your Address Here') type='text' /
       span.input-group-btn
-        button.btn.btn-success type='button'  Get Estimate!
+        button.btn.btn-success type='submit' Get Estimate!
