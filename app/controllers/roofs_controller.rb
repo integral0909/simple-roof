@@ -1,4 +1,4 @@
 class RoofsController < ApplicationController
-  def index
+  def show
   end
 end
