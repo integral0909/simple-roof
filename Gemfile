@@ -23,6 +23,7 @@ gem 'jquery-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '4.0.0.beta'
+  gem 'rails-assets-leaflet'
 end
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -36,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'slim-rails'
 gem 'dotenv-rails'
+gem 'geocoder'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
