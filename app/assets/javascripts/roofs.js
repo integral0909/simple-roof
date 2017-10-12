@@ -16,7 +16,7 @@ roofs.initAutocomplete = function() {
 roofs.listenSubmit = function() {
   roofs.$form.submit(function() {
     if (roofs.place) {
-      window.location.href = '/roofs/' + roofs.place[2]
+      window.location.href = '/roofs/' + roofs.place
     }
 
     return false
@@ -28,6 +28,6 @@ roofs.fillInAddress = function() {
   var geo   = place.geometry
 
   if (geo) {
-    roofs.place = [geo.location.lat(), geo.location.lng(), roofs.$input.val()]
+    roofs.place = roofs.$input.val()
   }
 }
