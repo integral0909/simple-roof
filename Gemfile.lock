@@ -116,6 +116,8 @@ GEM
       rails-assets-popper.js (>= 1.11.0, < 2)
     rails-assets-jquery (3.2.1)
     rails-assets-leaflet (1.2.0)
+    rails-assets-leaflet-draw (0.4.10)
+      rails-assets-leaflet (>= 1.0.0, < 2)
     rails-assets-popper.js (1.12.5)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
@@ -205,6 +207,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   rails-assets-bootstrap (= 4.0.0.beta)!
   rails-assets-leaflet!
+  rails-assets-leaflet-draw!
   sass-rails (~> 5.0)
   selenium-webdriver
   slim-rails

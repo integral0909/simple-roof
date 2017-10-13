@@ -24,6 +24,7 @@ gem 'jquery-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '4.0.0.beta'
   gem 'rails-assets-leaflet'
+  gem 'rails-assets-leaflet-draw'
 end
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

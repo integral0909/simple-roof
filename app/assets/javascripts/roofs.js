@@ -39,11 +39,30 @@ roofs.initMap = function() {
       center: new L.LatLng($map.data('lat'), $map.data('lng')),
       zoom:   19
     })
-    var roads = L.gridLayer.googleMutant({
+
+    L.gridLayer.googleMutant({
         type:    'satellite',
         maxZoom: 23
-    }).addTo(mymap);
+    }).addTo(mymap)
+
+    mymap.on('click', roofs.addMarker.bind(this))
   }
+}
+
+roofs.addMarker = function(event) {
+  var newMarker = new L.marker(event.latlng, {
+    draggable: 'true',
+    icon: L.divIcon({
+      className:  'leaflet-mouse-marker',
+      iconAnchor: [6, 6],
+      iconSize:   [12, 12]
+    })
+  })
+
+  //this.markerList.push(newMarker)
+  //this.drawPoly(this.markerList)
+
+  return this
 }
 
 $(function() {
