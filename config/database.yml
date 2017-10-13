@@ -18,8 +18,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: database: simpleroof_test
+  database: simpleroof_test
 
 production:
   <<: *default
-  database: database: simpleroof_production
+  database: simpleroof_production
