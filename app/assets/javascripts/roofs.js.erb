@@ -50,8 +50,8 @@ roofs.initMap = function() {
 
 
     var myIcon = L.icon({
-      iconUrl:   '/assets/leaflet/marker-icon.png',
-      shadowUrl: '/assets/leaflet/marker-shadow.png'
+      iconUrl:   "<%= image_path('leaflet/marker-icon.png') %>",
+      shadowUrl: "<%= image_path('leaflet/marker-shadow.png') %>"
     })
     L.marker([$map.data('lat'), $map.data('lng')], {icon: myIcon}).addTo(this.myMap)
 
