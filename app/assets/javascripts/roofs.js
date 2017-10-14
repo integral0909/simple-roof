@@ -48,6 +48,13 @@ roofs.initMap = function() {
         maxZoom: 23
     }).addTo(this.myMap)
 
+
+    var myIcon = L.icon({
+      iconUrl:   '/assets/leaflet/marker-icon.png',
+      shadowUrl: '/assets/leaflet/marker-shadow.png'
+    })
+    L.marker([$map.data('lat'), $map.data('lng')], {icon: myIcon}).addTo(this.myMap)
+
     this.myMap.on('click', roofs.addMarker.bind(this))
   }
 }
@@ -83,4 +90,4 @@ roofs.drawPoly = function() {
 
 $(function() {
   roofs.initMap()
-});
+})
