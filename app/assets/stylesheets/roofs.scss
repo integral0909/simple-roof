@@ -8,3 +8,13 @@
 .roofs-map {
   height: 640px;
 }
+
+div.leaflet-grab {
+  cursor: crosshair;
+}
+.leaflet-marker-icon {
+  border-radius: 50px;
+  background: #2196F3;
+  border: 2px solid black;
+  border-color: rgba(0,0,0,0.2);
+}
