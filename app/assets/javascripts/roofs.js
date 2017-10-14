@@ -60,13 +60,15 @@ roofs.addMarker = function(event) {
       iconAnchor: [6, 6],
       iconSize:   [12, 12]
     })
+  }).on('dragend', function(event){
+    var marker   = event.target
+    var position = marker.getLatLng()
+    marker.setLatLng(new L.LatLng(position.lat, position.lng), { draggable:'true' })
+    roofs.drawPoly()
   }).addTo(roofs.myMap)
 
   roofs.markers.push(marker)
   roofs.drawPoly()
-
-  //this.markerList.push(newMarker)
-  //this.drawPoly(this.markerList)
 
   return this
 }
@@ -75,8 +77,7 @@ roofs.drawPoly = function() {
   var coordinates = roofs.markers.map(function(value, index){ return [value.getLatLng().lat, value.getLatLng().lng] })
   var polygones   = coordinates.concat([new L.LatLng(coordinates[0][0], coordinates[0][1])])
 
-  if (this.calculatedPoly !== null) this.calculatedPoly.removeFrom(roofs.myMap)
-
+  if (this.calculatedPoly !== null) { this.calculatedPoly.removeFrom(roofs.myMap) }
   this.calculatedPoly = L.polyline(polygones, { 'fill': true }).addTo(roofs.myMap)
 }
 
