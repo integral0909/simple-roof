@@ -37,7 +37,7 @@ roofs.initMap = function() {
   if ($map.length) {
     var mymap = new L.Map($map[0], {
       center: new L.LatLng($map.data('lat'), $map.data('lng')),
-      zoom:   19
+      zoom:   20
     })
 
     L.gridLayer.googleMutant({
