@@ -17,7 +17,5 @@ module SimpleRoof
     config.generators do |g|
       g.template_engine :slim
     end
-
-    config.assets.digest = false
   end
 end
