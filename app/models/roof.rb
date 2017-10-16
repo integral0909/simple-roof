@@ -9,7 +9,7 @@ class Roof < ApplicationRecord
   before_save :update_estimation
 
   def calculate_estimation
-    area.to_i * "Roof::#{slope.upcase}_SLOPE".constantize
+    (area.to_i * "Roof::#{slope.upcase}_SLOPE".constantize).floor
   end
 
   private

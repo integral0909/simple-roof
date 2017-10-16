@@ -7,7 +7,11 @@ class RoofsController < ApplicationController
   def create
     @roof = Roof.new(roof_params)
     respond_to do |format|
-      format.js
+      if @roof.save
+        format.js { RoofMailer.estimation(@roof).deliver_now }
+      else
+        format.js
+      end
     end
   end
 
