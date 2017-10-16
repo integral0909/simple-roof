@@ -24,25 +24,25 @@ roofs.initAutocomplete = function() {
 }
 
 roofs.fillInAddress = function() {
-  var place = this.autocomplete.getPlace()
+  var place = roofs.autocomplete.getPlace()
   var geo   = place.geometry
 
   if (geo) {
-    this.place = this.$input.val()
+    roofs.place = roofs.$input.val()
   }
 }
 
 roofs.initMap = function() {
   $map                = $('#roofs-trace__area')
-  this.markers        = []
-  this.calculatedPoly = null
   this.$undo          = $('#roofs-trace__btn--undo')
   this.$next          = $('#roofs-trace__btn--next')
+  this.markers        = []
+  this.calculatedPoly = null
 
   if ($map.length) {
     // Initialize map
     this.myMap = new L.Map($map[0], {
-      center: new L.LatLng($map.data('lat'), $map.data('lng')),
+      center: new L.LatLng($('#roof_latitude').val(), $('#roof_longitude').val()),
       zoom:   21
     })
 
@@ -57,7 +57,7 @@ roofs.initMap = function() {
       iconUrl:   "<%= image_path('leaflet/marker-icon.png') %>",
       shadowUrl: "<%= image_path('leaflet/marker-shadow.png') %>"
     })
-    L.marker([$map.data('lat'), $map.data('lng')], { icon: myIcon }).addTo(this.myMap)
+    L.marker([$('#roof_latitude').val(), $('#roof_longitude').val()], { icon: myIcon }).addTo(this.myMap)
 
     // Add address label
     var info = L.control({ position: 'topleft' })
@@ -133,6 +133,9 @@ roofs.drawPoly = function() {
 
     if (this.calculatedPoly !== null) { this.calculatedPoly.removeFrom(this.myMap) }
     this.calculatedPoly = L.polyline(polygones, { 'fill': true }).addTo(this.myMap)
+
+    var area = L.GeometryUtil.geodesicArea(this.calculatedPoly.getLatLngs()) * 10.7639104
+    $('#roof_area').val(Math.round(area))
   }
 
   this.checkButtons()
