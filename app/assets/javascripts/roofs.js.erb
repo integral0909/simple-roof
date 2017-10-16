@@ -38,22 +38,36 @@ roofs.initMap = function() {
   this.calculatedPoly = null
 
   if ($map.length) {
+    // Initialize map
     this.myMap = new L.Map($map[0], {
       center: new L.LatLng($map.data('lat'), $map.data('lng')),
       zoom:   21
     })
 
+    // Render Google Maps layer
     L.gridLayer.googleMutant({
         type:    'satellite',
         maxZoom: 23
     }).addTo(this.myMap)
 
-
+    // Add marker icon
     var myIcon = L.icon({
       iconUrl:   "<%= image_path('leaflet/marker-icon.png') %>",
       shadowUrl: "<%= image_path('leaflet/marker-shadow.png') %>"
     })
-    L.marker([$map.data('lat'), $map.data('lng')], {icon: myIcon}).addTo(this.myMap)
+    L.marker([$map.data('lat'), $map.data('lng')], { icon: myIcon }).addTo(this.myMap)
+
+    // Add address label
+    var info = L.control({ position: 'topleft' })
+
+    info.onAdd = function (map) {
+      var div       = L.DomUtil.create('div', 'roofs-map__info')
+      div.innerHTML = $map.data('address')
+      return div
+    }
+    info.addTo(this.myMap)
+
+    console.log(info)
 
     this.myMap.on('click', roofs.addMarker.bind(this))
   }

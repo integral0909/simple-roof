@@ -2,11 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.jumbotron {
-  margin-bottom: 0;
-}
+
 .roofs-map {
   height: 640px;
+}
+.roofs-map__info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.jumbotron {
+  margin-bottom: 0;
 }
 
 .leaflet-grab {
