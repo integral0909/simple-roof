@@ -33,11 +33,11 @@ roofs.fillInAddress = function() {
 }
 
 roofs.initMap = function() {
-  $map                = $('#roofs-map__area')
+  $map                = $('#roofs-trace__area')
   this.markers        = []
   this.calculatedPoly = null
-  this.$undo          = $('#roofs-map__btn--undo')
-  this.$next          = $('#roofs-map__btn--next')
+  this.$undo          = $('#roofs-trace__btn--undo')
+  this.$next          = $('#roofs-trace__btn--next')
 
   if ($map.length) {
     // Initialize map
@@ -63,7 +63,7 @@ roofs.initMap = function() {
     var info = L.control({ position: 'topleft' })
 
     info.onAdd = function (map) {
-      var div       = L.DomUtil.create('div', 'roofs-map__info')
+      var div       = L.DomUtil.create('div', 'roofs-trace__info')
       div.innerHTML = $map.data('address')
       return div
     }
@@ -73,14 +73,10 @@ roofs.initMap = function() {
     this.$undo.on('click', this.pressUndo.bind(this))
     this.$next.on('click', this.pressNext.bind(this))
     this.myMap.on('click', this.addMarker.bind(this))
-  }
-}
 
-roofs.pressUndo = function() {
-  this.undoMarker()
-}
-roofs.pressNext = function() {
-  alert(456)
+    var slopes = $('#roofs-slope').find('.card')
+    slopes.on('click', this.clickSlope.bind(this))
+  }
 }
 
 roofs.addMarker = function(event) {
@@ -112,6 +108,24 @@ roofs.undoMarker = function() {
   }
 }
 
+roofs.pressUndo = function() {
+  this.undoMarker()
+}
+
+roofs.pressNext = function() {
+  $('#roofs-slope').fadeIn()
+  $('#roofs-progress--trace').addClass('bg-success')
+  $('#roofs-progress--slope').removeClass('bg-secondary')
+}
+
+roofs.clickSlope = function(e) {
+  console.debug($(e.currentTarget).data('type'))
+  $('#roofs-slope').fadeOut()
+  $('#roofs-form').fadeIn()
+  $('#roofs-progress--slope').addClass('bg-success')
+  $('#roofs-progress--estimation').removeClass('bg-secondary')
+}
+
 roofs.drawPoly = function() {
   if (this.markers.length > 0) {
     var coordinates = this.markers.map(function(value, index){ return [value.getLatLng().lat, value.getLatLng().lng] })
@@ -129,6 +143,12 @@ roofs.checkButtons = function() {
     this.$undo.removeClass('disabled')
   } else {
     this.$undo.addClass('disabled')
+  }
+
+  if (this.markers.length >= 3) {
+    this.$next.removeClass('disabled')
+  } else {
+    this.$next.addClass('disabled')
   }
 }
 
