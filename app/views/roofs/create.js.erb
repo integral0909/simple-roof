@@ -1,5 +1,9 @@
+var $form    = $('.roofs-form')
+var $message = $form.find('.message')
+
 <% if @roof.save %>
-  $('.roofs-form').find('.message').empty()
+  $('.roofs-form').find('.col-5').html('<h4>Estimated roof price is $<%= @roof.estimation %></h4>')
+  $('#roofs-progress--estimation').addClass('bg-success')
 <% else %>
-  $('.roofs-form').find('.message').html('<div class="alert alert-danger">Provided data seems to be invalid</div>')
+  $message.html("<div class='alert alert-danger'>Provided data seems to be invalid</div>")
 <% end %>

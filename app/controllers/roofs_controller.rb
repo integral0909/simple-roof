@@ -14,6 +14,6 @@ class RoofsController < ApplicationController
   private
 
   def roof_params
-    params.require(:roof).permit(:name, :email, :address, :latitude, :longitude, :area, :estimation)
+    params.require(:roof).permit(:name, :email, :address, :latitude, :longitude, :area, :slope, :estimation)
   end
 end

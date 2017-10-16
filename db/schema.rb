@@ -21,10 +21,14 @@ ActiveRecord::Schema.define(version: 20171016174035) do
     t.string "address"
     t.string "latitude"
     t.string "longitude"
-    t.string "area"
+    t.integer "area"
+    t.string "slope"
     t.string "estimation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_roofs_on_address"
+    t.index ["email"], name: "index_roofs_on_email"
+    t.index ["name"], name: "index_roofs_on_name"
   end
 
 end

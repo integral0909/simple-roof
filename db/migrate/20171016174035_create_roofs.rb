@@ -6,8 +6,13 @@ class CreateRoofs < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :latitude
       t.string :longitude
-      t.string :area
+      t.integer :area
+      t.string :slope
       t.string :estimation
+
+      t.index :name
+      t.index :email
+      t.index :address
 
       t.timestamps
     end
