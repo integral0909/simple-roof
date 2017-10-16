@@ -1,0 +1,5 @@
+<% if @roof.save %>
+  $('.roofs-form').find('.message').empty()
+<% else %>
+  $('.roofs-form').find('.message').html('<div class="alert alert-danger">Provided data seems to be invalid</div>')
+<% end %>

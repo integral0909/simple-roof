@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'slim-rails'
 gem 'dotenv-rails'
 gem 'geocoder'
+gem 'bootstrap_form'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

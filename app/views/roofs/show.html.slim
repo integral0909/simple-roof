@@ -16,6 +16,7 @@
 
     .roofs-layer.roofs-slope#roofs-slope
       .container
+        h3 How steep is your roof?
         .card-group
           .card data-type='flat'
             .card-body
@@ -30,4 +31,13 @@
             .card-body
               h4.card-title Steep
 
-    .roofs-layer.roofs-form#roofs-form Form is going to be rendered here
+    .roofs-layer.roofs-form
+      .container
+        .row.justify-content-center
+          .col-5
+            h3 Enter your contact info to be taken to your instant estimate.
+            .message
+            = bootstrap_form_for @roof, remote: true do |f|
+              = f.text_field :name
+              = f.email_field :email
+              = f.submit 'Get Estimation', class: 'btn btn-success'
