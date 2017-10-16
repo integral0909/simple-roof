@@ -2,5 +2,5 @@
   .roofs-map
     .roofs-map__area#roofs-map__area data-lat=@coordinates[0] data-lng=@coordinates[1] data-address=params[:id]
     .roofs-map__buttons
-      = link_to 'Undo', '#', class: 'btn btn-primary'
-      = link_to 'Next', '#', class: 'btn btn-success'
+      button class='btn btn-primary disabled' id='roofs-map__btn--undo' Undo
+      button class='btn btn-success disabled' id='roofs-map__btn--next' Next

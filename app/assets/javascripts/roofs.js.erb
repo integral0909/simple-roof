@@ -9,7 +9,7 @@ roofs.init = function() {
 }
 
 roofs.listenSubmit = function() {
-  roofs.$form.submit(function() {
+  this.$form.submit(function() {
     if (roofs.place) {
       window.location.href = '/roofs/' + roofs.place
     }
@@ -20,15 +20,15 @@ roofs.listenSubmit = function() {
 
 roofs.initAutocomplete = function() {
   this.autocomplete = new google.maps.places.Autocomplete(this.$input[0])
-  this.autocomplete.addListener('place_changed', roofs.fillInAddress)
+  this.autocomplete.addListener('place_changed', this.fillInAddress)
 }
 
 roofs.fillInAddress = function() {
-  var place = roofs.autocomplete.getPlace()
+  var place = this.autocomplete.getPlace()
   var geo   = place.geometry
 
   if (geo) {
-    roofs.place = roofs.$input.val()
+    this.place = this.$input.val()
   }
 }
 
@@ -36,6 +36,8 @@ roofs.initMap = function() {
   $map                = $('#roofs-map__area')
   this.markers        = []
   this.calculatedPoly = null
+  this.$undo          = $('#roofs-map__btn--undo')
+  this.$next          = $('#roofs-map__btn--next')
 
   if ($map.length) {
     // Initialize map
@@ -67,10 +69,18 @@ roofs.initMap = function() {
     }
     info.addTo(this.myMap)
 
-    console.log(info)
-
-    this.myMap.on('click', roofs.addMarker.bind(this))
+    // Bind actions
+    this.$undo.on('click', this.pressUndo.bind(this))
+    this.$next.on('click', this.pressNext.bind(this))
+    this.myMap.on('click', this.addMarker.bind(this))
   }
+}
+
+roofs.pressUndo = function() {
+  this.undoMarker()
+}
+roofs.pressNext = function() {
+  alert(456)
 }
 
 roofs.addMarker = function(event) {
@@ -84,22 +94,42 @@ roofs.addMarker = function(event) {
   }).on('dragend', function(event){
     var marker   = event.target
     var position = marker.getLatLng()
-    marker.setLatLng(new L.LatLng(position.lat, position.lng), { draggable:'true' })
-    roofs.drawPoly()
-  }).addTo(roofs.myMap)
 
-  roofs.markers.push(marker)
-  roofs.drawPoly()
+    marker.setLatLng(new L.LatLng(position.lat, position.lng), { draggable:'true' })
+    this.drawPoly()
+  }).addTo(this.myMap)
+
+  this.markers.push(marker)
+  this.drawPoly()
 
   return this
 }
 
-roofs.drawPoly = function() {
-  var coordinates = roofs.markers.map(function(value, index){ return [value.getLatLng().lat, value.getLatLng().lng] })
-  var polygones   = coordinates.concat([new L.LatLng(coordinates[0][0], coordinates[0][1])])
+roofs.undoMarker = function() {
+  if (this.markers.length > 0) {
+    this.markers.pop().remove()
+    this.drawPoly()
+  }
+}
 
-  if (this.calculatedPoly !== null) { this.calculatedPoly.removeFrom(roofs.myMap) }
-  this.calculatedPoly = L.polyline(polygones, { 'fill': true }).addTo(roofs.myMap)
+roofs.drawPoly = function() {
+  if (this.markers.length > 0) {
+    var coordinates = this.markers.map(function(value, index){ return [value.getLatLng().lat, value.getLatLng().lng] })
+    var polygones   = coordinates.concat([new L.LatLng(coordinates[0][0], coordinates[0][1])])
+
+    if (this.calculatedPoly !== null) { this.calculatedPoly.removeFrom(this.myMap) }
+    this.calculatedPoly = L.polyline(polygones, { 'fill': true }).addTo(this.myMap)
+  }
+
+  this.checkButtons()
+}
+
+roofs.checkButtons = function() {
+  if (this.markers.length > 0) {
+    this.$undo.removeClass('disabled')
+  } else {
+    this.$undo.addClass('disabled')
+  }
 }
 
 $(function() {
