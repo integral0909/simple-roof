@@ -4,7 +4,7 @@ class Roof < ApplicationRecord
   MODERATE_SLOPE  = 3.29.freeze
   STEEP_SLOPE     = 5.27.freeze
 
-  validates :name, :email, :area, :slope, presence: true
+  validates :name, :email, :phone, :area, :slope, presence: true
 
   before_save :update_estimation
 

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171016174035) do
   create_table "roofs", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.string "phone"
     t.string "address"
     t.string "latitude"
     t.string "longitude"
