@@ -59,20 +59,11 @@ roofs.initMap = function() {
     })
     L.marker([$('#roof_latitude').val(), $('#roof_longitude').val()], { icon: myIcon }).addTo(this.myMap)
 
-    // Add address label
-    var info = L.control({ position: 'topleft' })
-
-    info.onAdd = function (map) {
-      var div       = L.DomUtil.create('div', 'roofs-trace__info')
-      div.innerHTML = $('#roof_address').val()
-      return div
-    }
-    info.addTo(this.myMap)
-
     // Bind actions
     this.$undo.on('click', this.pressUndo.bind(this))
     this.$next.on('click', this.pressNext.bind(this))
     this.myMap.on('click', this.addMarker.bind(this))
+    $('#roofs-trace__info').on('click', this.showSearch.bind(this))
 
     var slopes = $('#roofs-slope').find('.card')
     slopes.on('click', this.clickSlope.bind(this))
@@ -116,6 +107,16 @@ roofs.pressNext = function() {
   $('#roofs-slope').fadeIn()
   $('#roofs-progress--trace').addClass('bg-success')
   $('#roofs-progress--slope').removeClass('bg-secondary')
+}
+
+roofs.showSearch = function() {
+  $('#roofs-progress').hide()
+
+  var search = $('.roofs-search')
+  search.removeClass('roofs-search--hidden')
+  search.find('input').focus()
+
+  return false
 }
 
 roofs.clickSlope = function(e) {

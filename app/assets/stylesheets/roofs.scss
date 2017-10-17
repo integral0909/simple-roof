@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.roofs-search--visible {
+  display: block;
+}
+.roofs-search--hidden {
+  display: none;
+}
 
 .roofs-slides, .roofs-trace {
   position: relative;
@@ -32,12 +38,21 @@
   }
 }
 .roofs-trace__info {
+  position: absolute;
+  top: 10px;
+  left: 55px;
+  z-index: 400;
+  width: 250px;
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
   background: white;
   background: rgba(255,255,255,0.8);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
+  cursor: pointer;
+  i {
+    display: block;
+  }
 }
 
 .roofs-slope {

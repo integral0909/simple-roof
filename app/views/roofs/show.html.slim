@@ -1,13 +1,19 @@
-.jumbotron.text-center
-  .container
-    .progress#roofs-progress
-      .progress-bar#roofs-progress--trace role='progressbar' style='width: 33%' Trace Roof
-      .progress-bar.bg-secondary#roofs-progress--slope role='progressbar' style='width: 33%' Slope
-      .progress-bar.bg-secondary#roofs-progress--estimation role='progressbar' style='width: 33%' Get Estimate
+#roofs-progress
+  .jumbotron.text-center
+    .container
+      .progress
+        .progress-bar#roofs-progress--trace role='progressbar' style='width: 33%' Trace Roof
+        .progress-bar.bg-secondary#roofs-progress--slope role='progressbar' style='width: 33%' Slope
+        .progress-bar.bg-secondary#roofs-progress--estimation role='progressbar' style='width: 33%' Get Estimate
+
+= render 'search', modifier: :hidden
 
 .roofs-slides
   .roofs-trace#roofs-trace
     .roofs-trace__area#roofs-trace__area
+    .roofs-trace__info
+      = @roof.address
+      i= link_to 'Change', '#', id: 'roofs-trace__info'
     .roofs-trace__buttons
       button class='btn btn-primary disabled' id='roofs-trace__btn--undo' Undo
       button class='btn btn-success disabled' id='roofs-trace__btn--next' Next
