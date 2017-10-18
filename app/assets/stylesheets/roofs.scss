@@ -69,7 +69,11 @@
   h1 {
     margin: 17px 0;
   }
-  button {
+}
+
+.roofs-form__buttons {
+  form {
+    display: inline-block;
     margin-right: 7px;
   }
 }

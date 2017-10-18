@@ -4,5 +4,6 @@ h1.display-4.text-primary= number_to_currency(@roof.estimation)
 p.text-secondary #{number_with_delimiter(@roof.area)} sq Ft. – #{@roof.slope.capitalize} Slope
 
 h3.text-primary How many free quotes would you like?
-button.btn.btn-outline-success 1 quote
-button.btn.btn-outline-success 2 quotes
+.roofs-form__buttons
+  = button_to '1 quote',  roof_path(@roof, quotes: 1), class: 'btn btn-outline-success', method: :put, remote: true
+  = button_to '2 quotes', roof_path(@roof, quotes: 2), class: 'btn btn-outline-success', method: :put, remote: true

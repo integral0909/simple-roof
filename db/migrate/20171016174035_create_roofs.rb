@@ -10,6 +10,7 @@ class CreateRoofs < ActiveRecord::Migration[5.1]
       t.integer :area
       t.string :slope
       t.string :estimation
+      t.integer :quotes, default: 0
 
       t.index :name
       t.index :email

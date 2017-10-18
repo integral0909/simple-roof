@@ -15,6 +15,13 @@ class RoofsController < ApplicationController
     end
   end
 
+  def update
+    @roof = Roof.find(params[:id])
+    respond_to do |format|
+      format.js { @roof.update(quotes: params[:quotes]) }
+    end
+  end
+
   private
 
   def roof_params

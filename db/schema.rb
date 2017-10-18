@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171016174035) do
     t.integer "area"
     t.string "slope"
     t.string "estimation"
+    t.integer "quotes", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address"], name: "index_roofs_on_address"
