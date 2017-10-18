@@ -1,0 +1,8 @@
+h3= @roof.address
+h5 Your roof replacement will cost approximately
+h1.display-4.text-primary= number_to_currency(@roof.estimation)
+p.text-secondary #{number_with_delimiter(@roof.area)} sq Ft. – #{@roof.slope.capitalize} Slope
+
+h3.text-primary How many free quotes would you like?
+button.btn.btn-outline-success 1 quote
+button.btn.btn-outline-success 2 quotes

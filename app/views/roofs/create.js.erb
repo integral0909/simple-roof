@@ -4,6 +4,6 @@ var $message = $form.find('.message')
 <% if @roof.errors.any? %>
   $message.html("<div class='alert alert-danger'>Provided data seems to be invalid</div>")
 <% else %>
-  $('.roofs-form').find('.col-5').html('<h4>Estimated roof price is $<%= @roof.estimation %></h4>')
+  $form.find('.container').html("<%= escape_javascript(render('estimation', roof: @roof)) %>")
   $('#roofs-progress--estimation').addClass('bg-success')
 <% end %>
