@@ -1,53 +1,55 @@
-#roofs-progress
-  .jumbotron.text-center
-    .container
-      .progress
-        .progress-bar#roofs-progress--trace role='progressbar' style='width: 33%' Trace Roof
-        .progress-bar.bg-secondary#roofs-progress--slope role='progressbar' style='width: 33%' Slope
-        .progress-bar.bg-secondary#roofs-progress--estimation role='progressbar' style='width: 33%' Get Estimate
+- unless defined?(@roof)
+  = render 'search', title: "Oops! The location you're looking for cannot be found!"
 
-= render 'search', modifier: :hidden
+- else
+  #roofs-progress
+    .jumbotron.text-center
+      .container
+        .progress
+          .progress-bar#roofs-progress--trace role='progressbar' style='width: 33%' Trace Roof
+          .progress-bar.bg-secondary#roofs-progress--slope role='progressbar' style='width: 33%' Slope
+          .progress-bar.bg-secondary#roofs-progress--estimation role='progressbar' style='width: 33%' Get Estimate
 
-.roofs-slides
-  .roofs-trace#roofs-trace
-    .roofs-trace__area#roofs-trace__area
-    .roofs-trace__info
-      = @roof.address
-      i= link_to 'Change', '#', id: 'roofs-trace__info'
-    .roofs-trace__buttons
-      button class='btn btn-primary disabled' id='roofs-trace__btn--undo' Undo
-      button class='btn btn-success disabled' id='roofs-trace__btn--next' Next
+  .roofs-slides
+    .roofs-trace#roofs-trace
+      .roofs-trace__area#roofs-trace__area
+      .roofs-trace__info
+        = @roof.address
+        i= link_to 'Change', '#', id: 'roofs-trace__info'
+      .roofs-trace__buttons
+        button class='btn btn-primary disabled' id='roofs-trace__btn--undo' Undo
+        button class='btn btn-success disabled' id='roofs-trace__btn--next' Next
 
-  .roofs-layer.roofs-slope#roofs-slope
-    .container
-      h3 How steep is your roof?
-      .card-group
-        .card data-type='flat'
-          .card-body
-            h4.card-title Flat
-        .card data-type='low'
-          .card-body
-            h4.card-title Low
-        .card data-type='moderate'
-          .card-body
-            h4.card-title Moderate
-        .card data-type='steep'
-          .card-body
-            h4.card-title Steep
+    .roofs-layer.roofs-slope#roofs-slope
+      .container
+        h3 How steep is your roof?
+        .card-group
+          .card data-type='flat'
+            .card-body
+              h4.card-title Flat
+          .card data-type='low'
+            .card-body
+              h4.card-title Low
+          .card data-type='moderate'
+            .card-body
+              h4.card-title Moderate
+          .card data-type='steep'
+            .card-body
+              h4.card-title Steep
 
-  .roofs-layer.roofs-form
-    .container
-      .row.justify-content-center
-        .col-5
-          h3 Enter your contact info to be taken to your instant estimate.
-          .message
-          = bootstrap_form_for @roof, remote: true do |f|
-            = f.text_field :name
-            = f.email_field :email
-            = f.text_field :phone
-            = f.hidden_field :address
-            = f.hidden_field :latitude
-            = f.hidden_field :longitude
-            = f.hidden_field :area
-            = f.hidden_field :slope
-            = f.submit 'Get Estimation', class: 'btn btn-success'
+    .roofs-layer.roofs-form
+      .container
+        .row.justify-content-center
+          .col-5
+            h3 Enter your contact info to be taken to your instant estimate.
+            .message
+            = bootstrap_form_for @roof, remote: true do |f|
+              = f.text_field :name
+              = f.email_field :email
+              = f.text_field :phone
+              = f.hidden_field :address
+              = f.hidden_field :latitude
+              = f.hidden_field :longitude
+              = f.hidden_field :area
+              = f.hidden_field :slope
+              = f.submit 'Get Estimation', class: 'btn btn-success'

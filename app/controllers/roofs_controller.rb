@@ -1,7 +1,10 @@
 class RoofsController < ApplicationController
   def show
-    coords = Geocoder.search(params[:id]).first.coordinates
-    @roof  = Roof.new(address: params[:id], latitude: coords[0], longitude: coords[1])
+    coords   = Geocoder.search(params[:id])
+    if coords.any?
+      location = coords.first.coordinates
+      @roof    = Roof.new(address: params[:id], latitude: location[0], longitude: location[1])
+    end
   end
 
   def create

@@ -11,9 +11,12 @@ roofs.init = function() {
 roofs.listenSubmit = function() {
   this.$form.submit(function() {
     if (roofs.place) {
-      window.location.href = '/roofs/' + roofs.place
+      var place = roofs.place
+    } else {
+      var place = roofs.$form.find('input').val()
     }
 
+    window.location.href = '/roofs/' + place
     return false
   })
 }
