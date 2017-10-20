@@ -27,24 +27,23 @@ roofs.initAutocomplete = function() {
 }
 
 roofs.fillInAddress = function() {
-  var place = roofs.autocomplete.getPlace()
-  //var geo   = place.geometry
+  var place   = roofs.autocomplete.getPlace()
+  roofs.place = roofs.$input.val()
 
-  //if (geo) {
-    roofs.place = roofs.$input.val()
-  //}
+  // If map persists (inner page)
+  if (roofs.myMap) { roofs.changeLocation(place) }
 }
 
 roofs.initMap = function() {
-  $map                = $('#roofs-trace__area')
+  this.$map           = $('#roofs-trace__area')
   this.$undo          = $('#roofs-trace__btn--undo')
   this.$next          = $('#roofs-trace__btn--next')
   this.markers        = []
   this.calculatedPoly = null
 
-  if ($map.length) {
+  if (this.$map.length) {
     // Initialize map
-    this.myMap = new L.Map($map[0], {
+    this.myMap = new L.Map(this.$map[0], {
       center: new L.LatLng($('#roof_latitude').val(), $('#roof_longitude').val()),
       zoom:   21
     })
@@ -66,7 +65,6 @@ roofs.initMap = function() {
     this.$undo.on('click', this.pressUndo.bind(this))
     this.$next.on('click', this.pressNext.bind(this))
     this.myMap.on('click', this.addMarker.bind(this))
-    $('#roofs-trace__info').on('click', this.showSearch.bind(this))
 
     var slopes = $('#roofs-slope').find('.card')
     slopes.on('click', this.clickSlope.bind(this))
@@ -112,14 +110,20 @@ roofs.pressNext = function() {
   $('#roofs-progress--slope').removeClass('bg-secondary')
 }
 
-roofs.showSearch = function() {
-  $('#roofs-progress').hide()
+roofs.changeLocation = function(place) {
+  var geo = place.geometry
+  if (geo) {
+    var address = $('#roofs-autocomplete').val()
+    $('#roof_address').val(address)
+    $('.roofs-trace__info').find('span').html(address)
 
-  var search = $('.roofs-search')
-  search.removeClass('roofs-search--hidden')
-  search.find('input').focus()
+    $('#roof_latitude').val(geo.location.lat())
+    $('#roof_longitude').val(geo.location.lng())
 
-  return false
+    if (roofs.myMap) { roofs.myMap.off(); roofs.myMap.remove() }
+
+    roofs.initMap()
+  }
 }
 
 roofs.clickSlope = function(e) {
