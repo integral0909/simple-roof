@@ -13,9 +13,8 @@
   .roofs-slides
     .roofs-trace#roofs-trace
       .roofs-trace__area#roofs-trace__area
-      .roofs-trace__info
-        span= @roof.address
-        i= link_to 'Change', '#myModal', id: 'roofs-trace__info', data: { toggle: :modal }
+      .roofs-trace__info#roofs-trace__info
+        input#roofs-autocomplete type='text' value="#{@roof.address}"
       .roofs-trace__buttons
         button class='btn btn-primary disabled' id='roofs-trace__btn--undo' Undo
         button class='btn btn-success disabled' id='roofs-trace__btn--next' Next
@@ -53,14 +52,3 @@
               = f.hidden_field :area
               = f.hidden_field :slope
               = f.submit 'Get Estimation', class: 'btn btn-success'
-
-  .modal.fade#myModal aria-hidden='true' aria-labelledby='mySmallModalLabel' role='dialog' tabindex='-1' 
-    .modal-dialog
-      .modal-content
-        .modal-body
-          h2 Enter your address below to get a roofing estimate in seconds!
-          .form
-            .form-group
-              label.col-form-label for='recipient-name' Enter your address to begin!
-              input#roofs-autocomplete.form-control  type='text'
-            button.btn.btn-outline-success type='button' data-dismiss='modal' Let's get started

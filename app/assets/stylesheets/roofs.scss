@@ -32,19 +32,14 @@
 }
 .roofs-trace__info {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 55px;
   z-index: 400;
-  width: 250px;
-  padding: 6px 8px;
-  font: 14px/16px Arial, Helvetica, sans-serif;
-  background: white;
-  background: rgba(255,255,255,0.8);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 5px;
-  cursor: pointer;
-  i {
-    display: block;
+  input {
+    width: 350px;
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
   }
 }
 
