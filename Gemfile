@@ -39,7 +39,7 @@ gem 'slim-rails'
 gem 'dotenv-rails'
 gem 'geocoder'
 gem 'bootstrap_form'
-
+gem "wysiwyg-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

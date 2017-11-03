@@ -1,0 +1,249 @@
+/*
+
+ *= require rails_bootstrap_forms
+ *= require leaflet
+ *= require leaflet-draw
+ *= require_tree .
+ *= require_self
+ */
+
+/*
+$enable-transitions: true;
+$body-bg: #fff;
+*/
+
+ @import "froala_editor.min";
+ @import "froala_style.min";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+ @import "bootstrap";
+ @import url('https://fonts.googleapis.com/css?family=Lato:300, 400');
+
+@import 'plugins/char_counter.min.css';
+@import 'plugins/code_view.min.css';
+@import 'plugins/colors.min.css';
+@import 'plugins/emoticons.min.css';
+@import 'plugins/file.min.css';
+@import 'plugins/fullscreen.min.css';
+@import 'plugins/help.min.css';
+@import 'plugins/image_manager.min.css';
+@import 'plugins/image.min.css';
+@import 'plugins/line_breaker.min.css';
+@import 'plugins/quick_insert.min.css';
+@import 'plugins/special_characters.min.css';
+@import 'plugins/table.min.css';
+@import 'plugins/video.min.css';
+
+html, body { overflow-x: hidden; }
+.smart-roof-logo {
+  width:35px;
+}
+.join-link {
+  position:absolute;
+  top:14px;
+  right:20px;
+  font-size:15px;
+  font-weight:300;
+  z-index:1;
+}
+.login-link {
+  position:absolute;
+  top:14px;
+  right:68px;
+  font-size:15px;
+  font-weight:300;
+  z-index:1;
+}
+.phone-link {
+  position:absolute;
+  top:14px;
+  right:146px;
+  font-size:15px;
+  font-weight:300;
+  z-index:1;
+}
+.no-br-top-left {
+  border-top-left-radius: 0 !important;
+}
+.no-br-top-right {
+  border-top-right-radius: 0 !important;
+}
+.borderless {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.advice-image {
+  max-height:310px;
+}
+ul {
+  list-style-type: none;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.7rem;
+}
+@media (min-width: 576px) {
+    h1 {
+      font-size: 2.8rem;
+	  }
+    h2 {
+      font-size: 2rem;
+    }
+}
+@media (min-width: 992px) {
+  header {
+    padding: 156px 0 100px;
+  }
+}
+
+header {
+  padding: 154px 0 100px;
+}
+.navbar-text a {
+  color: rgba(0, 0, 0, 0.5);
+}
+.display-5 {
+    font-size: 2.6rem;
+    font-weight: 300;
+    line-height: 1.1;
+}
+.review-card {
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+
+/*
+<div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+
+.bg {
+  height: 100vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+*/
+
+.logo {
+	width:95px;
+	position:absolute;
+	top:15px;
+	left:17px;
+  z-index:2;
+}
+.header-logo {
+  width:95px;
+}
+.phone {
+  position:absolute;
+  top:15px;
+  right:17px;
+  color:white;
+}
+.phone-icon {
+  position:absolute;
+  top:2px;
+  right:117px;
+}
+.navbar {
+  margin-bottom: 0;
+}
+
+/* Absolute Position */
+
+.address {
+  position: absolute;
+  top: 240px; right: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-group-lg > .form-control, .input-group-lg > .input-group-btn > .btn {
+  line-height: 1.8;
+}
+
+.pitch h1 {
+  position: absolute;
+  top: 120px; right: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300 !important;
+}
+.pitch h2 {
+  position: absolute;
+  top: 175px; right: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300 !important;
+
+}
+.card {
+  border: 1px solid #c4c4c4;
+  border-radius: 3px;
+  box-shadow: 0 0 7px 3px hsla(0,0%,90%,.63);
+}
+.testimonial {
+  display: block;
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/* Devise Sign In*/
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.pass-1 {
+  margin-bottom: -1px !important;
+  border-radius: 0 !important;
+}
+.pass-2 {
+  margin-bottom: 10px !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.forgot-pass {
+  margin-bottom: 10px !important;
+}
